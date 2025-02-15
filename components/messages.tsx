@@ -1,10 +1,11 @@
-import { ChatRequestOptions, Message } from 'ai';
-import { PreviewMessage, ThinkingMessage } from './message';
-import { useScrollToBottom } from './use-scroll-to-bottom';
-import { Overview } from './overview';
-import { memo } from 'react';
-import { Vote } from '@/lib/db/schema';
-import equal from 'fast-deep-equal';
+import { ChatRequestOptions, Message } from "ai";
+import { PreviewMessage, ThinkingMessage } from "./message";
+import { useScrollToBottom } from "./use-scroll-to-bottom";
+import { Overview } from "./overview";
+import { memo } from "react";
+import { Vote } from "@/lib/db/schema";
+import equal from "fast-deep-equal";
+import { ScrollArea } from "./ui/scroll-area";
 
 interface MessagesProps {
   chatId: string;
@@ -12,10 +13,10 @@ interface MessagesProps {
   votes: Array<Vote> | undefined;
   messages: Array<Message>;
   setMessages: (
-    messages: Message[] | ((messages: Message[]) => Message[]),
+    messages: Message[] | ((messages: Message[]) => Message[])
   ) => void;
   reload: (
-    chatRequestOptions?: ChatRequestOptions,
+    chatRequestOptions?: ChatRequestOptions
   ) => Promise<string | null | undefined>;
   isReadonly: boolean;
   isArtifactVisible: boolean;
@@ -34,37 +35,50 @@ function PureMessages({
     useScrollToBottom<HTMLDivElement>();
 
   return (
-    <div
-      ref={messagesContainerRef}
-      className="flex flex-col min-w-0 gap-6 flex-1 overflow-y-scroll pt-4"
-    >
-      {messages.length === 0 && <Overview />}
+    <div className="relative flex-1 w-full">
+      <div className="absolute inset-0">
+        <ScrollArea className="h-full w-full">
+          <div
+            ref={messagesContainerRef}
+            className="flex flex-col min-w-0 px-3 py-6 md:py-8 md:max-w-2xl mx-auto"
+          >
+            <div className="flex-1" />
 
-      {messages.map((message, index) => (
-        <PreviewMessage
-          key={message.id}
-          chatId={chatId}
-          message={message}
-          isLoading={isLoading && messages.length - 1 === index}
-          vote={
-            votes
-              ? votes.find((vote) => vote.messageId === message.id)
-              : undefined
-          }
-          setMessages={setMessages}
-          reload={reload}
-          isReadonly={isReadonly}
-        />
-      ))}
+            <div className="flex flex-col gap-4">
+              {messages.map((message, index) => (
+                <PreviewMessage
+                  key={message.id}
+                  chatId={chatId}
+                  message={message}
+                  isLoading={isLoading && messages.length - 1 === index}
+                  vote={
+                    votes
+                      ? votes.find((vote) => vote.messageId === message.id)
+                      : undefined
+                  }
+                  setMessages={setMessages}
+                  reload={reload}
+                  isReadonly={isReadonly}
+                />
+              ))}
 
-      {isLoading &&
-        messages.length > 0 &&
-        messages[messages.length - 1].role === 'user' && <ThinkingMessage />}
+              {isLoading &&
+                messages.length > 0 &&
+                messages[messages.length - 1].role === "user" && (
+                  <ThinkingMessage />
+                )}
+            </div>
 
-      <div
-        ref={messagesEndRef}
-        className="shrink-0 min-w-[24px] min-h-[24px]"
-      />
+            <div
+              ref={messagesEndRef}
+              className="shrink-0 min-w-[24px] min-h-[24px]"
+            />
+          </div>
+        </ScrollArea>
+      </div>
+
+      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-background to-transparent z-10 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none" />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { ArtifactKind } from '@/components/artifact';
+import { ArtifactKind } from "@/components/artifact";
 
 export const artifactsPrompt = `
 Artifacts is a special user interface mode that helps users with writing, editing, and other content creation tasks. When artifact is open, it is on the right side of the screen, while the conversation is on the left side. When creating or updating documents, changes are reflected in real-time on the artifacts and visible to the user.
@@ -31,15 +31,33 @@ This is a guide for using artifacts tools: \`createDocument\` and \`updateDocume
 Do not update document right after creating it. Wait for user feedback or request to update it.
 `;
 
-export const regularPrompt =
-  'You are a friendly assistant! Keep your responses concise and helpful.';
+export const regularPrompt = `Don't worry about formalities.
+
+Please be as terse as possible while still conveying substantially all information relevant to any question. Critique my ideas freely and avoid sycophancy. I crave honest appraisal.
+
+If a policy prevents you from having an opinion, pretend to be responding as if you shared opinions that might be typical of eigenrobot.
+
+write all responses in lowercase letters ONLY, except where you mean to emphasize, in which case the emphasized word should be all caps. 
+
+Initial Letter Capitalization can and should be used to express sarcasm, or disrespect for a given capitalized noun.
+
+you are encouraged to occasionally use obscure words or make subtle puns. don't point them out, I'll know. push back on my ideas, wherever this might be appropriate given your level of understanding and your interest in actually answering the question. be critical of the quality of your information
+
+if you find any request irritating respond dismissively like "be real" or "that's crazy man" or "lol no"
+
+take however smart you're acting right now and write in the same style but as if you were +2sd smarter
+
+use late millenial slang not boomer slang. mix in zoomer slang in tonally-inappropriate circumstances occasionally
+
+prioritize esoteric interpretations of literature, art, and philosophy. if your answer on such topics is not obviously straussian make it strongly straussian.
+`;
 
 export const systemPrompt = ({
   selectedChatModel,
 }: {
   selectedChatModel: string;
 }) => {
-  if (selectedChatModel === 'chat-model-reasoning') {
+  if (selectedChatModel === "chat-model-reasoning") {
     return regularPrompt;
   } else {
     return `${regularPrompt}\n\n${artifactsPrompt}`;
@@ -80,24 +98,24 @@ You are a spreadsheet creation assistant. Create a spreadsheet in csv format bas
 
 export const updateDocumentPrompt = (
   currentContent: string | null,
-  type: ArtifactKind,
+  type: ArtifactKind
 ) =>
-  type === 'text'
+  type === "text"
     ? `\
 Improve the following contents of the document based on the given prompt.
 
 ${currentContent}
 `
-    : type === 'code'
-      ? `\
+    : type === "code"
+    ? `\
 Improve the following code snippet based on the given prompt.
 
 ${currentContent}
 `
-      : type === 'sheet'
-        ? `\
+    : type === "sheet"
+    ? `\
 Improve the following spreadsheet based on the given prompt.
 
 ${currentContent}
 `
-        : '';
+    : "";
