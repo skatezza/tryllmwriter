@@ -18,7 +18,7 @@ export function AppMenubar() {
 
   return (
     <div className="sticky top-0 left-0 right-0 opacity-0 hover:opacity-100 transition-opacity duration-200 !z-30">
-      <Menubar className="border-none px-2 py-6 bg-background/80 backdrop-blur-sm">
+      <Menubar className="border-none px-2 bg-background/80 backdrop-blur-sm">
         <MenubarMenu>
           <MenubarTrigger>File</MenubarTrigger>
           <MenubarContent>

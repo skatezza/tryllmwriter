@@ -37,10 +37,10 @@ function PureMessages({
   return (
     <div className="relative flex-1 w-full">
       <div className="absolute inset-0">
-        <ScrollArea className="h-full w-full">
+        <ScrollArea className="size-full">
           <div
             ref={messagesContainerRef}
-            className="flex flex-col min-w-0 px-3 py-6 md:py-8 md:max-w-2xl mx-auto"
+            className="flex flex-col min-w-0 px-3 py-6 md:max-w-3xl mx-auto"
           >
             <div className="flex-1" />
 
@@ -51,11 +51,7 @@ function PureMessages({
                   chatId={chatId}
                   message={message}
                   isLoading={isLoading && messages.length - 1 === index}
-                  vote={
-                    votes
-                      ? votes.find((vote) => vote.messageId === message.id)
-                      : undefined
-                  }
+                  vote={votes?.find((vote) => vote.messageId === message.id)}
                   setMessages={setMessages}
                   reload={reload}
                   isReadonly={isReadonly}
@@ -77,8 +73,8 @@ function PureMessages({
         </ScrollArea>
       </div>
 
-      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-background to-transparent z-10 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none" />
+      <div className="absolute top-0 inset-x-0 h-14 bg-gradient-to-b from-background to-transparent z-10 pointer-events-none" />
+      <div className="absolute bottom-0 inset-x-0 h-10 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none" />
     </div>
   );
 }

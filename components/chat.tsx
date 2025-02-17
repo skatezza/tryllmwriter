@@ -1,3 +1,4 @@
+// TODOs: remove the menubar, integrate instead inside the sidebar
 "use client";
 
 import type { Attachment, Message } from "ai";
@@ -94,7 +95,7 @@ export function Chat({
   return (
     <>
       <div className="flex flex-col h-full bg-background">
-        <AppMenubar />
+        {/* <AppMenubar /> */}
         <ChatHeader
           chatId={id}
           selectedModelId={selectedChatModel}
@@ -114,7 +115,7 @@ export function Chat({
             isArtifactVisible={isArtifactVisible}
           />
 
-          <div className="relative mx-auto w-full md:max-w-2xl px-4 bg-background mb-4">
+          <div className="relative mx-auto w-full md:max-w-3xl px-4 bg-background mb-4">
             {!isReadonly && (
               <MultimodalInput
                 chatId={id}

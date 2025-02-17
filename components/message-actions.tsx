@@ -34,7 +34,7 @@ export function PureMessageActions({
         <Tooltip>
           <TooltipTrigger asChild>
             <Button
-              className="py-1 px-2 h-fit text-muted-foreground"
+              className="py-1 px-2 h-fit text-muted-foreground opacity-0 group-hover/message:opacity-100 transition-opacity duration-200"
               variant="outline"
               onClick={async () => {
                 await copyToClipboard(message.content as string);

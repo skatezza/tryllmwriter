@@ -18,47 +18,32 @@ You are building an LLM frontend/chat UI for a web application. The UI should be
 
 ## User Interface
 
-<Menubar>
-- [x] The menubar appears when we hover over the top of the screen
-- [x] The menubar contains the following options:
-  - [x] File menu
-    - [ ] New chat (opens a new chat) - UI only, functionality not implemented
-    - [ ] Load chat (opens a modal to load a file) - UI only, functionality not implemented
-    - [ ] Export chat (txt, pdf, json, markdown) - UI only, functionality not implemented
-  - [x] Edit menu
-    - [ ] Undo - UI only, functionality not implemented
-    - [ ] Redo - UI only, functionality not implemented
-    - [ ] Cut - UI only, functionality not implemented
-    - [ ] Copy - UI only, functionality not implemented
-    - [ ] Paste - UI only, functionality not implemented
-    - [ ] Select all - UI only, functionality not implemented
-  - [x] Settings menu
-    - [x] Enter API Key - Implemented with a sheet modal and Supabase integration
-    - [ ] Focus mode - UI only, functionality not implemented
-    - [ ] Zen mode - UI only, functionality not implemented
-    - [ ] Normal mode - UI only, functionality not implemented
-    - [ ] Font size (tbd) - UI only, functionality not implemented
-    - [ ] Font family (tbd) - UI only, functionality not implemented
-    - [ ] Line height (tbd) - UI only, functionality not implemented
-    - [ ] Letter spacing (tbd) - UI only, functionality not implemented
-  - [x] Help menu
-    - [ ] About - UI only, functionality not implemented
-    - [ ] Feedback - UI only, functionality not implemented
-    - [ ] Support - UI only, functionality not implemented
-    - [ ] Donate - UI only, functionality not implemented
-</Menubar>
-
-<!-- ### Sidebar
+### Sidebar
 
 - [x] The sidebar appears when we click on the sidebar icon
 - [x] The sidebar contains the chat history from latest to oldest interactions
-- [x] The sidebar contains a + button to create a new chat (top right) -->
+- [x] The sidebar contains a + button to create a new chat (top right)
+- [x] Each chat has a "More" dropdown menu with the following options:
+  - [x] Export chat
+    - [x] Export as TXT
+    - [x] Export as Markdown
+    - [x] Export as JSON
+    - [x] Export as PDF
+  - [x] Share
+  - [x] Delete
 
 <Chat_interface>
 
 - [x] There's a fade gradient effect on the top and bottom of the chat
 - [ ] The chat's text area is displayed with mb-[20vh] margin bottom
-      </Chat_interface>
+- [x] The chat header contains:
+  - [x] Sidebar toggle button
+  - [x] New chat button (when sidebar is closed)
+  - [x] Model selector
+  - [x] Visibility selector
+  - [x] Export button with dropdown menu (TXT, Markdown, JSON, PDF)
+
+</Chat_interface>
 
 <Chat_messages_area>
 
@@ -79,30 +64,21 @@ You are building an LLM frontend/chat UI for a web application. The UI should be
 
 ## Implementation Details
 
-1. Menubar Component ⚠️ (Partial)
-
-   - ✅ Added shadcn menubar component
-   - ✅ Implemented hover-to-show functionality with opacity transition
-   - ✅ Added all menu items with keyboard shortcuts
-   - ✅ Added backdrop blur effect
-   - ❌ No functionality implemented for menu items
-   - ❌ No modals implemented
-
-2. Chat Interface ✅
+1. Chat Interface ✅
 
    - ✅ Added top and bottom gradient effects
    - ✅ Implemented 20vh bottom margin
    - ✅ Added proper spacing and padding
    - ✅ Centered content with responsive max-width
 
-3. Messages Area ✅
+2. Messages Area ✅
 
    - ✅ Implemented message stacking with consistent gaps
    - ✅ Added responsive padding
    - ✅ Centered content with max-width constraints
    - ✅ Added proper overflow handling
 
-4. Text Area ✅
+3. Text Area ✅
    - ✅ Added sky-500 caret color
    - ✅ Set transparent background
    - ✅ Removed borders
@@ -115,33 +91,16 @@ You are building an LLM frontend/chat UI for a web application. The UI should be
 
 ## Required Next Steps
 
-1. Menu Item Functionality:
+1. Export Functionality:
 
-   - [ ] Implement new chat creation
-   - [ ] Add file loading functionality with modal
-   - [ ] Add export functionality with format selection
-   - [ ] Implement edit operations (undo, redo, cut, copy, paste, select all)
-   - [ ] Add appearance mode switching (Focus, Zen, Normal)
+   - [x] Implement TXT export with proper message formatting
+   - [x] Implement Markdown export with proper message formatting
+   - [x] Implement JSON export with complete chat data
+   - [x] Implement PDF export with proper formatting
 
-2. Required Modals:
-
-   - [ ] Add shadcn dialog component
-   - [ ] Create file loading modal
-   - [ ] Create about modal
-   - [ ] Create feedback form modal
-
-3. Appearance Controls:
-
-   - [ ] Add font size controls
-   - [ ] Add font family selection
-   - [ ] Add line height controls
-   - [ ] Add letter spacing controls
-
-4. Help Menu Actions:
-   - [ ] Implement about modal with app information
-   - [ ] Add feedback form functionality
-   - [ ] Add support page redirection
-   - [ ] Add donation page redirection
+2. Required Components:
+   - [x] Add export functionality to chat dropdown menu
+   - [x] Create error handling with toast notifications
 
 </Required_Next_Steps>
 

@@ -92,7 +92,7 @@ const PurePreviewMessage = ({
             )}
 
             {(message.content || message.reasoning) && mode === "view" && (
-              <div className="flex flex-row-reverse gap-2 items-center">
+              <div className="flex flex-row-reverse gap-2 items-end">
                 {message.role === "user" && !isReadonly && (
                   <Tooltip>
                     <TooltipTrigger asChild>
@@ -199,13 +199,13 @@ const PurePreviewMessage = ({
               </div>
             )}
 
-            {/* {!isReadonly && (
+            {!isReadonly && (
               <MessageActions
                 key={`action-${message.id}`}
                 message={message}
                 isLoading={isLoading}
               />
-            )} */}
+            )}
           </div>
         </div>
       </motion.div>

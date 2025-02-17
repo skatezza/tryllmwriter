@@ -224,8 +224,8 @@ function PureMultimodalInput({
             "min-h-[24px] max-h-[calc(75dvh)] overflow-hidden resize-none rounded-2xl !text-base bg-transparent pb-10 border-none font-mono caret-sky-500 focus:ring-0 focus:ring-offset-0",
             className
           )}
-          maxHeight={200}
-          minHeight={200}
+          maxHeight={300}
+          minHeight={50}
           autoFocus
           onKeyDown={(event) => {
             if (event.key === "Enter" && !event.shiftKey) {
